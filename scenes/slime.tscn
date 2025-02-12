@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://t2t24wt5rapm"]
+
+[ext_resource type="Script" path="res://scripts/slime.gd" id="1_43eue"]
+[ext_resource type="Texture2D" uid="uid://droqewf8s4kl6" path="res://assets/sprites/slime_green.png" id="1_pnlfi"]
+[ext_resource type="PackedScene" uid="uid://6l45e6hfgp8p" path="res://scenes/enemy_collision.tscn" id="3_hxlii"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7lku"]
+atlas = ExtResource("1_pnlfi")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3a1i"]
+atlas = ExtResource("1_pnlfi")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duinn"]
+atlas = ExtResource("1_pnlfi")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8s3lr"]
+atlas = ExtResource("1_pnlfi")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fsct7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7lku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3a1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_duinn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8s3lr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37625"]
+size = Vector2(9, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0r3n"]
+size = Vector2(14, 12)
+
+[node name="slime" type="CharacterBody2D"]
+safe_margin = 0.001
+script = ExtResource("1_43eue")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fsct7")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.787945
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_37625")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(11, 5)
+target_position = Vector2(0, 11)
+
+[node name="EnemyCollision" parent="." instance=ExtResource("3_hxlii")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyCollision"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_k0r3n")
