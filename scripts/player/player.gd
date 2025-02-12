@@ -12,8 +12,9 @@ var jumps_left: int
 
 var states:PlayerStatesNames = PlayerStatesNames.new()
 
-func death():
+func take_damage():
 	pass
+	
 
 func play_animation(animation_name: String)-> void:
 	animated_sprite_2d.play(animation_name)
@@ -22,12 +23,12 @@ func handle_gravity(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-func _physics_process(delta: float) -> void:
+func handle_movement_and_direction(direction: int, speed: float)->void:
+	if direction < 0:
+		animated_sprite_2d.flip_h = true
+	elif direction > 0:
+		animated_sprite_2d.flip_h = false
+	velocity.x = direction * speed
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+func _physics_process(delta: float) -> void:
+	pass

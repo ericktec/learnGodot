@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbsjv1qkk1wd6"]
+
+[ext_resource type="Texture2D" uid="uid://m7ekvkj58nmx" path="res://assets/sprites/coinIcon.png" id="1_55tki"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_q4fvc"]
+[ext_resource type="FontFile" uid="uid://dtcq1sn23hhdf" path="res://assets/fonts/PixelOperator8.ttf" id="2_jibyy"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q4fvc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 240.0
+offset_bottom = 80.0
+
+[node name="CoinTexture" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_55tki")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="CoinsLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jibyy")
+theme_override_font_sizes/font_size = 32
+text = "x0
+"

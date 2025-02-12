@@ -1,11 +1,13 @@
-[gd_scene load_steps=18 format=4 uid="uid://cwsc32ayadh6i"]
+[gd_scene load_steps=20 format=4 uid="uid://cwsc32ayadh6i"]
 
 [ext_resource type="PackedScene" uid="uid://b6lgcr5olqtuq" path="res://scenes/Player/player.tscn" id="1_y81ug"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_yqvbg"]
 [ext_resource type="Texture2D" uid="uid://dj70nrr8iotf8" path="res://assets/sprites/world_tileset.png" id="2_2qd6j"]
 [ext_resource type="PackedScene" uid="uid://d133ij3xtslsg" path="res://scenes/platform.tscn" id="3_ubbns"]
 [ext_resource type="PackedScene" uid="uid://ih8naynb2xym" path="res://scenes/coin.tscn" id="4_7bule"]
 [ext_resource type="PackedScene" uid="uid://d35v1q5qilpaa" path="res://scenes/killzone.tscn" id="5_x308w"]
 [ext_resource type="PackedScene" uid="uid://t2t24wt5rapm" path="res://scenes/slime.tscn" id="6_068as"]
+[ext_resource type="PackedScene" uid="uid://bbsjv1qkk1wd6" path="res://scenes/hud.tscn" id="8_2bkpq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hcfgp"]
 texture = ExtResource("2_2qd6j")
@@ -298,6 +300,11 @@ _data = {
 
 [node name="Game" type="Node2D"]
 
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("hud")]
+unique_name_in_owner = true
+script = ExtResource("1_yqvbg")
+hud = NodePath("../CanvasLayer/HUD")
+
 [node name="TileMapsLayers" type="Node" parent="."]
 
 [node name="BackGround" type="TileMapLayer" parent="TileMapsLayers"]
@@ -369,3 +376,7 @@ position = Vector2(31, 5)
 
 [node name="slime2" parent="Enemies" instance=ExtResource("6_068as")]
 position = Vector2(198, 5)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("8_2bkpq")]
