@@ -7,7 +7,7 @@ class_name StateMachine extends Node
 var current_state:StateBase = null
 
 func _state_start() -> void:
-	#print("State Machine ", controlled_node.name, " start state", current_state.name)
+	print("State Machine ", controlled_node.name, " start state", current_state.name)
 	current_state.controller_node = controlled_node
 	current_state.state_machine = self
 	current_state.enter()
